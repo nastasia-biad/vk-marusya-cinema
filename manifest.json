@@ -2,18 +2,18 @@
   "name": "Marusya Cinema",
   "short_name": "Marusya",
   "description": "Онлайн-платформа для поиска фильмов",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#67A5EB",
   "icons": [
     {
-      "src": "./assets/icons/icon-192.png",
+      "src": "assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./assets/icons/icon-512.png",
+      "src": "assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
