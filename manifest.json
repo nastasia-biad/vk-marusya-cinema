@@ -2,19 +2,18 @@
   "name": "Marusya Cinema",
   "short_name": "Marusya",
   "description": "Онлайн-платформа для поиска фильмов",
-  "start_url": "/vk-marusya-cinema/",
-  "scope": "/vk-marusya-cinema/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#67A5EB",
   "icons": [
     {
-      "src": "/vk-marusya-cinema/assets/icons/icon-192.png",
+      "src": "assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/vk-marusya-cinema/assets/icons/icon-512.png",
+      "src": "assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

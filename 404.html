@@ -2,22 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>VK Marusya Cinema</title>
+    <title>Redirecting...</title>
     <script>
-        // Автоматический редирект на версию с хэшем
-        const path = window.location.pathname;
-        if (path.includes('vk-marusya-cinema') && !window.location.hash) {
-            // Сохраняем путь для маршрутизации
-            const redirectPath = path.replace('/vk-marusya-cinema', '') || '/';
-            window.location.replace('/vk-marusya-cinema/#' + redirectPath);
+        // Автоматически добавляем hash для GitHub Pages
+        if (window.location.pathname.includes('vk-marusya-cinema') && !window.location.hash) {
+            window.location.hash = '/';
         }
     </script>
 </head>
 <body>
     <noscript>
-        <h1>VK Marusya Cinema</h1>
-        <p>Для работы приложения требуется JavaScript.</p>
-        <p>Перейдите по <a href="/vk-marusya-cinema/#/">ссылке с поддержкой хэша</a>.</p>
+        <p>Please enable JavaScript or go to <a href="/vk-marusya-cinema/#/">VK Marusya Cinema</a></p>
     </noscript>
 </body>
 </html>
