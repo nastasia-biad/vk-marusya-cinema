@@ -1,0 +1,143 @@
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%), 
+              linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+  font-family: 'Play', sans-serif;
+
+  &__content {
+    max-width: 600px;
+    width: 100%;
+    padding: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+  }
+
+  &__message {
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 32px 0;
+  }
+
+  &__details {
+    margin: 24px 0;
+    text-align: left;
+
+    summary {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 12px;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  &__error,
+  &__stack {
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 8px 0;
+    overflow: auto;
+    max-height: 200px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  &__error {
+    color: #ff6b6b;
+    border-left: 3px solid #ff6b6b;
+  }
+
+  &__stack {
+    color: rgba(255, 255, 255, 0.5);
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__btn {
+    padding: 12px 32px;
+    border-radius: 24px;
+    font-family: 'Play', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+
+    &--primary {
+      background: #67A5EB;
+      color: #FFFFFF;
+
+      &:hover {
+        background: #5590d6;
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// Анимация появления
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-boundary__content {
+  animation: fadeIn 0.5s ease-out;
+}

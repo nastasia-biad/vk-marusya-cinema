@@ -1,0 +1,245 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+
+  &--blur {
+    backdrop-filter: blur(8px);
+  }
+
+  &--transparent {
+    background: transparent;
+  }
+
+  &:not(.loading-overlay--transparent) {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &--fullscreen {
+    position: fixed;
+    z-index: 10000;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+    &--fullscreen {
+      background: rgba(0, 0, 0, 0.95);
+      padding: 60px;
+    }
+  }
+
+  &__message {
+    color: #FFFFFF;
+    font-family: 'Play', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+}
+
+.loading-morph {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  
+  &__shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #67A5EB, #6A5DC2);
+    
+    &--1 {
+      animation: morph 2s ease-in-out infinite;
+    }
+    
+    &--2 {
+      animation: morph 2s ease-in-out infinite 0.2s;
+      opacity: 0.7;
+    }
+    
+    &--3 {
+      animation: morph 2s ease-in-out infinite 0.4s;
+      opacity: 0.4;
+    }
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    border-radius: 50% 30% 70% 50%;
+  }
+  25% {
+    transform: scale(1.1) rotate(90deg);
+    border-radius: 40% 60% 40% 60%;
+  }
+  50% {
+    transform: scale(0.9) rotate(180deg);
+    border-radius: 70% 30% 50% 70%;
+  }
+  75% {
+    transform: scale(1.05) rotate(270deg);
+    border-radius: 50% 50% 30% 70%;
+  }
+}
+
+.loading-pulse {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  
+  &__circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    
+    &--1 {
+      border-top-color: #67A5EB;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    &--2 {
+      border-right-color: #6A5DC2;
+      animation: pulse 1.5s ease-in-out infinite 0.5s;
+    }
+    
+    &--3 {
+      border-bottom-color: #67A5EB;
+      animation: pulse 1.5s ease-in-out infinite 1s;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 60px;
+  height: 60px;
+  
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #67A5EB, #6A5DC2);
+    
+    &--1 {
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+    
+    &--2 {
+      animation: bounce 1.4s ease-in-out infinite 0.2s;
+    }
+    
+    &--3 {
+      animation: bounce 1.4s ease-in-out infinite 0.4s;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+}
+
+
+.loading-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  
+  &__circle {
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      border-image: linear-gradient(135deg, #67A5EB, #6A5DC2);
+      border-image-slice: 1;
+      animation: spin 2s linear infinite reverse;
+    }
+  }
+  
+  &__inner-circle {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background: rgba(103, 165, 235, 0.1);
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

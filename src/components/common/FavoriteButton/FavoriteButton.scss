@@ -1,0 +1,78 @@
+.favorite-button {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  background: #393B3C;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #2c2e2f;
+    transform: translateY(-2px);
+  }
+  
+  &--active {
+    background: var(--content-active, #B4A9FF);
+    border-color: var(--content-active, #B4A9FF);
+    
+    &:hover {
+      background: var(--content-active, #B4A9FF);
+      opacity: 0.9;
+    }
+    
+    svg path {
+      fill: #FFFFFF;
+    }
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+    
+    path {
+      fill: #FFFFFF;
+      transition: fill 0.3s ease;
+    }
+  }
+  
+  // Размеры
+  &--small {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &--medium {
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  &--large {
+    width: 64px;
+    height: 64px;
+    padding: 20px;
+    
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

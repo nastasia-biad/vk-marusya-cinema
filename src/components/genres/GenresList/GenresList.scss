@@ -1,0 +1,25 @@
+.genres-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    gap: 40px;
+    width: 1280px;
+    height: 304px;
+
+    @media (max-width: 1320px) {
+      width: 100%;
+      flex-wrap: wrap;
+      height: auto;
+      justify-content: center;
+    }
+  }
+}

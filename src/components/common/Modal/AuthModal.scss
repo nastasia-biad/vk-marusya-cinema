@@ -1,0 +1,551 @@
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  
+  @media (max-width: 768px) {
+    align-items: flex-end;
+  }
+}
+
+.auth-modal-container {
+  position: relative;
+  padding: 24px;
+  
+  @media (max-width: 768px) {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
+.auth-modal-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    border-radius: 16px;
+  }
+}
+
+.auth-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 24px;
+  position: relative;
+  z-index: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  // Модификатор для окна входа (десктоп)
+  &--login:not(.auth-modal--mobile) {
+    width: 420px;
+    height: 450px;
+    padding: 64px 40px;
+    gap: 40px;
+  }
+
+  // Модификатор для окна регистрации (десктоп)
+  &--register:not(.auth-modal--mobile) {
+    width: 420px;
+    height: 720px;
+    padding: 64px 40px 48px;
+    gap: 32px;
+  }
+
+  // Мобильная версия
+  &--mobile {
+    width: 335px;
+    padding: 64px 20px 32px;
+    gap: 32px;
+    animation: slideUpMobile 0.3s ease-out;
+    
+    &.auth-modal--login {
+      min-height: 409px;
+      border-radius: 16px;
+    }
+    
+    &.auth-modal--register {
+      min-height: 500px;
+      overflow-y: auto;
+      border-radius: 16px;
+    }
+  }
+}
+
+// Анимация для мобильной версии
+@keyframes slideUpMobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// Кнопка закрытия (десктоп)
+.auth-modal__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &:hover {
+    background: #f5f5f5;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+// Кнопка закрытия (мобильная версия)
+.auth-modal__close-mobile {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s ease;
+  padding: 0;
+  
+  @media (min-width: 769px) {
+    display: none;
+  }
+  
+  &:hover {
+    background: #f5f5f5;
+  }
+  
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Логотип
+.auth-modal__logo {
+  width: 132px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .auth-modal--mobile & {
+    width: 132.13px;
+    height: 29.5px;
+  }
+
+  &-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+// Заголовок формы - только для регистрации
+.auth-modal__title {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .auth-modal--mobile & {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+// Обертка формы
+.auth-modal__form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .auth-modal--login & {
+    gap: 24px;
+    height: 252px;
+  }
+
+  .auth-modal--register & {
+    gap: 32px;
+    flex-grow: 1;
+  }
+  
+  .auth-modal--mobile & {
+    width: 295px;
+    max-width: 100%;
+  }
+  
+  .auth-modal--mobile.auth-modal--login & {
+    height: 252px;
+    gap: 24px;
+  }
+  
+  .auth-modal--mobile.auth-modal--register & {
+    gap: 24px;
+  }
+}
+
+// Форма
+.auth-modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .auth-modal--login & {
+    gap: 12px;
+  }
+
+  .auth-modal--register & {
+    gap: 16px;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  
+  .auth-modal--mobile & {
+    width: 100%;
+  }
+}
+
+// Группа инпутов
+.auth-modal__inputs-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .auth-modal--login & {
+    gap: 12px;
+  }
+
+  .auth-modal--register & {
+    gap: 16px;
+  }
+  
+  .auth-modal--mobile & {
+    gap: 12px;
+  }
+}
+
+// Контейнер для инпута
+.auth-modal__input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+// Стили инпута
+.auth-modal__input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  height: 56px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  .auth-modal--mobile & {
+    width: 295px;
+  }
+
+  // Стили для валидного состояния при фокусе
+  &:focus-within:not(.auth-modal__input--error) {
+    border-color: #67A5EB;
+    box-shadow: 0 0 0 2px rgba(103, 165, 235, 0.1);
+  }
+
+  // Стили для ошибки
+  &--error {
+    border-color: #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.02);
+    
+    &:focus-within {
+      border-color: #ff4444 !important;
+      box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.1);
+    }
+    
+    .auth-modal__input-icon {
+      color: #ff4444;
+    }
+    
+    .auth-modal__input-icon-fallback {
+      color: #ff4444;
+    }
+  }
+
+  &-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &-field {
+    width: 100%;
+    height: 24px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.8);
+    flex: 1;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .auth-modal--mobile & {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+}
+
+// Текст ошибки
+.auth-modal__error-text {
+  color: #ff4444;
+  font-size: 14px;
+  font-family: 'Play', sans-serif;
+  margin-left: 4px;
+  min-height: 20px;
+  animation: fadeIn 0.3s ease;
+  
+  .auth-modal--mobile & {
+    font-size: 12px;
+  }
+}
+
+// Ошибка формы
+.auth-modal__form-error {
+  color: #ff4444;
+  font-size: 14px;
+  font-family: 'Play', sans-serif;
+  text-align: center;
+  padding: 12px;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  animation: fadeIn 0.3s ease;
+  margin-bottom: 8px;
+  
+  .auth-modal--mobile & {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+// Кнопка отправки
+.auth-modal__submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 48px;
+  gap: 12px;
+  width: 100%;
+  height: 56px;
+  background: #67A5EB;
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+
+  .auth-modal--mobile & {
+    width: 295px;
+    height: 56px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  &:hover:not(:disabled) {
+    background: #5590d6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #67A5EB;
+    
+    &:hover {
+      background: #67A5EB;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// Переключение между формами
+.auth-modal__switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+
+  .auth-modal--mobile & {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-text {
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    
+    .auth-modal--mobile & {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  &-btn {
+    background: none;
+    border: none;
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #67A5EB;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    transition: color 0.3s ease;
+    
+    .auth-modal--mobile & {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    &:hover {
+      color: #5590d6;
+    }
+    
+    &:disabled {
+      color: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Анимация для плавного появления ошибок
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Для очень маленьких экранов
+@media (max-width: 375px) {
+  .auth-modal--mobile {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  
+  .auth-modal__form-wrapper {
+    width: 100%;
+  }
+  
+  .auth-modal__input {
+    width: 100% !important;
+  }
+  
+  .auth-modal__submit {
+    width: 100% !important;
+  }
+}

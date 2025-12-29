@@ -1,0 +1,459 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --content-active: #B4A9FF;
+}
+
+@import './animations.scss';
+
+body {
+  font-family: 'Play', sans-serif;
+  background: 
+    linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%),
+    linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// Контейнер
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  width: 100%;
+
+  @media (max-width: 1320px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}
+
+// Типография
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.body-24 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.body-18 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.body-18-bold {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+// Кнопки
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 48px;
+  gap: 12px;
+  border-radius: 28px;
+  border: none;
+  font-family: 'Play', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &-primary {
+    background: #67A5EB;
+    color: #FFFFFF;
+    
+    &:hover {
+      background: #5590d6;
+      transform: translateY(-2px);
+    }
+  }
+
+  &-secondary {
+    background: #393B3C;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    
+    &:hover {
+      background: #2c2e2f;
+      transform: translateY(-2px);
+    }
+  }
+
+  &-icon {
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    background: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 28px;
+    
+    &:hover {
+      background: #2a2a2a;
+      transform: translateY(-2px);
+    }
+    
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.favorite-active {
+      background: #333333 !important;
+      
+      img {
+        filter: brightness(0) saturate(100%) invert(74%) sepia(23%) saturate(1280%) hue-rotate(210deg) brightness(105%) contrast(101%);
+      }
+    }
+  }
+}
+
+// Рейтинг
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: #308E21;
+  border-radius: 16px;
+  width: fit-content;
+  
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  &__value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+}
+
+// Мета-информация
+.meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  
+  &__item {
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 0 40px;
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%), 
+              linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+
+  .not-found-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    h2 {
+      font-family: 'Play', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 40px;
+      color: #FFFFFF;
+      margin: 0 0 16px 0;
+    }
+
+    p {
+      font-family: 'Play', sans-serif;
+      font-size: 18px;
+      line-height: 24px;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0 0 32px 0;
+    }
+
+    .btn {
+      margin: 0 auto;
+    }
+  }
+}
+
+// Лоадер для кнопок
+.btn {
+  position: relative;
+  
+  &__loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Анимация вращения
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Стили для загрузки приложения
+.app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%), 
+              linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+}
+
+// Позиционирование модальных окон
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.content-transition {
+  transition: all 0.3s ease;
+  
+  &-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  &-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  &-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms, transform 300ms;
+  }
+}
+
+.global-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  
+  .loading {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.page-transition {
+  transition: all 0.3s ease;
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px ;
+  }
+
+  h1 {
+    font-size: 32px ;
+    line-height: 40px ;
+  }
+
+  h2 {
+    font-size: 28px ;
+    line-height: 36px ;
+  }
+
+  h3 {
+    font-size: 24px ;
+    line-height: 32px ;
+  }
+
+  .body-24 {
+    font-size: 18px ;
+    line-height: 24px ;
+  }
+
+  .body-18 {
+    font-size: 16px ;
+    line-height: 22px ;
+  }
+
+  .body-18-bold {
+    font-size: 16px ;
+    line-height: 22px ;
+  }
+
+  .btn {
+    padding: 14px 32px ;
+    font-size: 16px ;
+    line-height: 22px ;
+
+    &-icon {
+      width: 48px ;
+      height: 48px ;
+      padding: 12px ;
+
+      img {
+        width: 20px ;
+        height: 20px ;
+      }
+    }
+  }
+
+  .header + main {
+    padding-top: 72px ;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .btn:hover,
+    .movie-card:hover,
+    .genre-card:hover {
+      transform: none ;
+    }
+    
+    .header__nav-item:hover,
+    .header__user-link:hover,
+    .header__login-btn:hover {
+      border-bottom-color: transparent ;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding: 0 16px ;
+  }
+
+  h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  h3 {
+    font-size: 20px ;
+    line-height: 28px ;
+  }
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .movie-hero-mobile__trailer-btn:hover,
+  .movie-hero-mobile__favorite-btn:hover,
+  .movie-hero__trailer-btn:hover,
+  .movie-hero__favorite-btn:hover {
+    transform: none;
+  }
+  
+  .movie-hero-mobile__social-link:hover,
+  .mobile-header__action-btn:hover {
+    background: transparent;
+  }
+}

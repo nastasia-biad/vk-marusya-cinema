@@ -1,0 +1,721 @@
+.account-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  isolation: isolate;
+  position: relative;
+  min-height: 100vh;
+
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%),
+    linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+
+  &__main {
+    flex: 1;
+    width: 100%;
+    padding-top: 96px;
+  }
+}
+
+.account-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 160px 80px;
+  gap: 64px;
+  width: 100%;
+  min-height: 880px;
+}
+
+// Заголовок страницы
+.account-page__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.account-page__title-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  width: 299px;
+  height: 56px;
+}
+
+.account-page__title {
+  width: 299px;
+  height: 56px;
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+// Вкладки навигации
+.account-page__tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 64px;
+  width: 575px;
+  height: 48px;
+}
+
+.account-page__tab {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 8px;
+  height: 48px;
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &--active {
+    border-bottom-color: #DC5DFC;
+  }
+
+  &:hover:not(.account-page__tab--active) {
+    border-bottom-color: rgba(220, 93, 252, 0.5);
+  }
+
+  &-icon {
+    width: 24px;
+    height: 24px;
+    color: #FFFFFF;
+    flex-shrink: 0;
+  }
+
+  &-text {
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+}
+
+// Область контента
+.account-page__content-area {
+  width: 100%;
+}
+
+// Вкладка "Избранное"
+.account-page__favorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+}
+
+.account-page__movies-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.account-page__movies-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+  width: 1280px;
+  height: 336px;
+}
+
+// Обертка для карточки фильма
+.account-page__movie-card-wrapper {
+  position: relative;
+  width: 224px;
+  height: 336px;
+}
+
+.account-page__remove-btn {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: -18px; 
+  top: -18px; 
+  background: #FFFFFF;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  visibility: visible;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: #f5f5f5;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.account-page__remove-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.account-page__remove-loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Карточка фильма
+.account-page__movie-card {
+  box-sizing: border-box;
+  width: 224px;
+  height: 336px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.33);
+  border-radius: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex: none;
+
+  &:hover {
+    border-color: #FFFFFF;
+    transform: translateY(-4px);
+  }
+
+  &-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  &-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .account-page__movie-card:hover &-image {
+    transform: scale(1.05);
+  }
+
+  &-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 1;
+  }
+
+  &-title {
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-meta {
+    display: flex;
+    gap: 12px;
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &-year,
+  &-rating {
+    display: inline-block;
+  }
+}
+
+// Кнопка "Показать ещё"
+.account-page__load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+  margin-top: 20px;
+
+  &-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 48px;
+    gap: 12px;
+    background: #67A5EB;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    min-width: 200px;
+
+    &:hover:not(:disabled) {
+      background: #5590d6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &-loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+// Счетчик фильмов
+.account-page__movies-count {
+  text-align: center;
+  font-family: 'Play', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.account-page__no-favorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  text-align: center;
+
+  &-text {
+    font-family: 'Play', sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+  }
+}
+
+// Вкладка "Настройки аккаунта"
+.account-page__settings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 482px;
+}
+
+.account-page__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+  width: 100%;
+}
+
+// Секция аватара и имени
+.account-page__avatar-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 100%;
+  height: 60px;
+}
+
+.account-page__avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  flex-shrink: 0;
+
+  &-initials {
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+  }
+}
+
+.account-page__user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 406px;
+  height: 60px;
+}
+
+.account-page__user-name {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-page__user-label {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin: 0;
+  opacity: 0.8;
+}
+
+// Секция email
+.account-page__email-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 329px;
+  height: 60px;
+}
+
+.account-page__email-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: #FFFFFF;
+  }
+}
+
+.account-page__email-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 253px;
+  height: 60px;
+}
+
+.account-page__user-email {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-page__email-label {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin: 0;
+  opacity: 0.8;
+}
+
+// Кнопки
+.account-page__browse-btn,
+.account-page__logout-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 48px;
+  gap: 12px;
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.account-page__browse-btn {
+  background: #67A5EB;
+  color: #FFFFFF;
+
+  &:hover {
+    background: #5590d6;
+    transform: translateY(-2px);
+  }
+}
+
+.account-page__logout-btn {
+  background: #67A5EB;
+  color: #FFFFFF;
+  width: 262px;
+  height: 56px;
+
+  &:hover {
+    background: #5590d6;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Анимации
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.account-page__movies-row {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.account-page__settings {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Анимация для кнопки удаления
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.account-page__remove-btn {
+  animation: fadeInScale 0.2s ease-out;
+}
+
+// Адаптивность
+@media (max-width: 1440px) {
+  .account-page__content {
+    padding: 160px 40px;
+  }
+
+  .account-page__movies-row {
+    width: 100%;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .account-page__movie-card-wrapper {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-page__main {
+    padding-top: 80px;
+  }
+
+  .account-page__content {
+    padding: 120px 20px 80px;
+    gap: 40px;
+    min-height: auto;
+  }
+
+  .account-page__title {
+    font-size: 36px;
+    line-height: 44px;
+    width: 100%;
+  }
+
+  .account-page__tabs {
+    width: 100%;
+    gap: 32px;
+    justify-content: space-between;
+  }
+
+  .account-page__tab-text {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .account-page__settings {
+    width: 100%;
+    max-width: 482px;
+  }
+
+  .account-page__user-details,
+  .account-page__email-details {
+    width: calc(100% - 76px);
+  }
+
+  .account-page__remove-btn {
+    width: 32px;
+    height: 32px;
+    right: -16px;
+    top: -16px;
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .account-page__tab {
+    flex-direction: column;
+    gap: 4px;
+    height: auto;
+    padding: 8px 0;
+
+    &-text {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  .account-page__logout-btn {
+    width: 100%;
+  }
+
+  .account-page__remove-btn {
+    width: 28px;
+    height: 28px;
+    right: -14px;
+    top: -14px;
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  width: 100%;
+
+  @media (max-width: 1320px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}

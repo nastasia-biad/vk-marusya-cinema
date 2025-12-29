@@ -1,0 +1,398 @@
+.genre-movies-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%),
+    linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+
+  .genre-movies-main {
+    flex: 1;
+    padding-top: 96px;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 216px);
+  }
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 100%;
+
+  @media (max-width: 1320px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+}
+
+.genre-movies-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 80px 0;
+  gap: 64px;
+  width: 100%;
+
+  @media (max-width: 1320px) {
+    padding: 60px 0;
+    gap: 48px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 0;
+    gap: 32px;
+  }
+}
+
+.genre-movies-breadcrumbs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+}
+
+.genre-movies-back-btn-wrapper {
+  width: 332px;
+  height: 56px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 332px;
+    height: 52px;
+  }
+}
+
+.genre-movies-back-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateX(-2px);
+  }
+
+  &:active {
+    transform: translateX(0);
+  }
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+}
+
+.genre-movies-back-btn-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  gap: 16px;
+
+  transition: all 0.3s ease;
+
+  .genre-movies-back-btn:hover & {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px;
+    gap: 12px;
+  }
+}
+
+.genre-movies-back-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+  }
+
+  .genre-movies-back-btn:hover & img {
+    transform: translateX(-2px);
+  }
+
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.genre-movies-back-text {
+  font-family: 'Play', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+// Заголовок и счетчик
+.genre-movies-header {
+  display: none;
+}
+
+// Загрузка
+.genre-movies-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  width: 100%;
+}
+
+// Сетка фильмов
+.genre-movies-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+
+  .genre-movies-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    gap: 40px;
+    width: 1280px;
+    height: 336px;
+
+    @media (max-width: 1320px) {
+      width: 100%;
+      flex-wrap: wrap;
+      height: auto;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+}
+
+.genre-movie-card-wrapper {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Кнопка "Показать ещё"
+.genre-movies-load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  width: 1280px;
+  height: 56px;
+  margin-top: 20px;
+
+  @media (max-width: 1320px) {
+    width: 100%;
+  }
+
+  &-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 48px;
+    gap: 12px;
+    width: 218px;
+    height: 56px;
+    background: #67A5EB;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+
+    &:hover:not(:disabled) {
+      background: #5590d6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      padding: 14px 32px;
+      width: 200px;
+      height: 52px;
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+}
+
+// Сообщение об отсутствии фильмов
+.genre-movies-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  width: 100%;
+  text-align: center;
+
+  p {
+    font-family: 'Play', sans-serif;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 24px;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 32px;
+    gap: 12px;
+    background: #67A5EB;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Play', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+
+    &:hover {
+      background: #5590d6;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Счетчик фильмов
+.genre-movies-count {
+  font-family: 'Play', sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+// Анимации
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.genre-movies-row {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Скроллбар
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.genre-movies-load-more-placeholder {
+  height: 1px;
+  width: 100%;
+  opacity: 0;
+}
+
+// Мобильная адаптация карточек
+@media (max-width: 768px) {
+  .genre-movie-card-wrapper {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .genre-movies-grid .genre-movies-row {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+}
